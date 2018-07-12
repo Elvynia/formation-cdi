@@ -1,10 +1,10 @@
 package fr.gtm.proxibanque.persistence;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
-import javax.persistence.EntityManager;
 
 import fr.gtm.proxibanque.domain.Client;
 
@@ -17,21 +17,18 @@ import fr.gtm.proxibanque.domain.Client;
  */
 @Named
 @ApplicationScoped
-public class ClientDao implements Serializable {
+public class ClientDao extends Repository<Client> implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private EntityManager entityManager;
-
-	public ClientDao() {
-		this.entityManager = HibernateUtil.getSessionFactory()
-				.createEntityManager();
+	@Override
+	public List<Client> findAll() {
+		return this.findAll(Client.class);
 	}
 
-	public void create(Client client) {
-		this.entityManager.getTransaction().begin();
-		this.entityManager.persist(client);
-		this.entityManager.getTransaction().commit();
+	@Override
+	public Client findOne(Integer id) {
+		return this.findOne(new Client(), id);
 	}
 
 }

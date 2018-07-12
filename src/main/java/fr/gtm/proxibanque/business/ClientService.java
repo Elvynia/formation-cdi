@@ -21,7 +21,7 @@ public class ClientService implements Serializable {
 	public String createClient(final String name) {
 		final Client client = new Client();
 		client.setFirstname(name);
-		this.clientDao.create(client);
+		this.clientDao.save(client);
 		return "Client bien créé en base de données.";
 	}
 }
