@@ -7,8 +7,6 @@ import javax.inject.Inject;
 import fr.gtm.proxibanque.domain.HbEntity;
 import fr.gtm.proxibanque.persistence.Repository;
 
-//@Named
-//@ApplicationScoped
 public class CrudService<ENTITY extends HbEntity> implements Serializable {
 
 	private static final long serialVersionUID = 1L;
